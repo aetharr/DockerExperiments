@@ -1,0 +1,24 @@
+version: '2'
+services:
+  wordpress:
+    image: pabrahamsson/rpi-wordpress
+    volumes:
+     - wpdata:/var/www/html
+    ports:
+     - "80:80"
+    depends_on:
+     - db
+    environment:
+       WORDPRESS_DB_HOST: db
+       WORDPRESS_DB_PASSWORD: my-secret-password
+
+  db:
+    image: hypriot/rpi-mysql
+    volumes:
+     - mysqldata:/var/lib/mysql
+    environment:
+     MYSQL_ROOT_PASSWORD: my-secret-password
+
+volumes:
+  wpdata:
+  mysqldata:
