@@ -17,3 +17,5 @@ For my setup, it assumes that all the containers you wish to run are located in 
 * ```chmod 664 /etc/systemd/system/dockercontainers.service``` to assign the appropriate permissions
 * ```systemctl daemon-reload``` to refresh the system states
 * ```systemctl enable dockercontainers.service``` to enable the service to run on startup.
+
+[Reference Information for Creating Services](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System_Administrators_Guide/sect-Managing_Services_with_systemd-Unit_Files.html)
