@@ -1,3 +1,6 @@
+## backup-volume.sh
+This script will allow you to backup the entire contents of a docker volume into a tar. To use it you will need the name of the docker container you wish to interact with, and the path to the folder which is stored in the volume, e.g. a website might be stored at /var/www/html
+
 ## start-containers.sh and stop-containers.sh
 The point of these scripts is to allow you to launch multiple docker containers in one go from a single script. The commands will recurse into subdirectories from wherever you call them and either start or stop the containers.
 
