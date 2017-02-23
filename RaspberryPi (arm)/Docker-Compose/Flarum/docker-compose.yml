@@ -1,0 +1,43 @@
+version: '2'
+
+services:
+    flarum:
+        # This image has a copy of MSMTP installed, simply set the email driver
+        # to 'smtp' PROFIT!
+        image: "aetharr/rpi-docker-flarum"
+        #container_name: "flarum"
+        links:
+            - "db:db"
+        environment:
+            - "FORUM_URL=http://my.forum.tld"
+
+            # It's important that you specify the database details the php config
+            # is re-written every time the container restarts
+            - "DB_HOST=db"
+            - "DB_NAME=flarum"
+            - "DB_USER=flarum"
+            - "DB_PASS=flarum-password"
+            #- "DB_PREF=table-previx"
+        volumes:
+            - "flarum-assets:/flarum/app/assets"
+            - "flarum-extensions:/flarum/app/extensions"
+        ports:
+            - "8888:8888"
+
+    db:
+        image: "hypriot/rpi-mysql"
+        #container_name: "mysql"
+        volumes:
+            - "flarum-db:/var/lib/mysql"
+        environment:
+            - "MYSQL_ROOT_PASSWORD=my-secret-password"
+            - "MYSQL_DATABASE=flarum"
+            - "MYSQL_USER=flarum"
+            - "MYSQL_PASSWORD=flarum-password"
+        expose:
+            - "3306"
+
+volumes:
+    flarum-assets:
+    flarum-extensions:
+    flarum-db:
